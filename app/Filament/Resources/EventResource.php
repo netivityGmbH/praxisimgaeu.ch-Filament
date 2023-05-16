@@ -33,11 +33,7 @@ class EventResource extends Resource
             ->columns([
                 TextColumn::make("name")->label("Name"),
                 TextColumn::make("start")
-                    ->date("d.m.Y")
-                    ->label("Datum")
-                    ->grow(false),
-                TextColumn::make("start")
-                    ->time("H:i")
+                    ->dateTime("d.m.Y H:i")
                     ->label("Startzeit")
                     ->grow(false),
                 TextColumn::make("end")

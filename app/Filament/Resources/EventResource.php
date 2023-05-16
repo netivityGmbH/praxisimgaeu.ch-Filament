@@ -32,8 +32,12 @@ class EventResource extends Resource
         return $table
             ->columns([
                 TextColumn::make("name")->label("Name"),
-                TextColumn::make("start")->label("Startzeit"),
-                TextColumn::make("end")->label("Endzeit"),
+                TextColumn::make("start")
+                    ->dateTime("d.m.Y H:i")
+                    ->label("Startzeit"),
+                TextColumn::make("end")
+                    ->dateTime("d.m.Y H:i")
+                    ->label("Endzeit"),
             ])
             ->bulkActions([Tables\Actions\DeleteBulkAction::make()]);
     }

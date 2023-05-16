@@ -15,4 +15,6 @@ class Post extends Model
      * @var array
      */
     protected $fillable = ["title", "content", "type"];
+
+    protected $casts = ["created_at" => "date:d.m.Y"];
 }

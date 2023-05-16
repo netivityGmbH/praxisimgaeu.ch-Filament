@@ -1,0 +1,18 @@
+version: "3.8"
+services:
+    db:
+        container_name: db-${APP_NAME}
+        platform: linux/x86_64 #required because of Macbook M1 Pro ARM
+        image: mysql:8
+        restart: unless-stopped
+        environment:
+            MYSQL_ROOT_PASSWORD: secret
+            MYSQL_DATABASE: ${DB_DATABASE}
+            MYSQL_USER: ${DB_USERNAME}
+            MYSQL_PASSWORD: ${DB_PASSWORD}
+        ports:
+            - "3306:3306"
+        volumes:
+            - db-praxisimgaeu:/var/lib/mysql
+volumes:
+    db-praxisimgaeu:

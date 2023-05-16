@@ -13,6 +13,9 @@ return new class extends Migration
     {
         Schema::create('subscriptions', function (Blueprint $table) {
             $table->id();
+            $table->string('key')->unique();
+            $table->integer('total_events');
+            $table->boolean('active')->default(0);
             $table->timestamps();
         });
     }

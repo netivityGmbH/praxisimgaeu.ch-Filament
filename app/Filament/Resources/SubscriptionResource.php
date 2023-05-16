@@ -10,6 +10,8 @@ use Filament\Resources\Form;
 use Filament\Resources\Resource;
 use Filament\Resources\Table;
 use Filament\Tables;
+use Filament\Tables\Columns\CheckboxColumn;
+use Filament\Tables\Columns\TextColumn;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
@@ -17,48 +19,42 @@ class SubscriptionResource extends Resource
 {
     protected static ?string $model = Subscription::class;
 
-    protected static ?string $navigationGroup = 'Sensopro';
+    protected static ?string $navigationGroup = "Sensopro";
     protected static ?int $navigationSort = 1;
-    protected static ?string $navigationIcon = 'heroicon-o-key';
+    protected static ?string $navigationIcon = "heroicon-o-key";
 
-    public static function form(Form $form): Form
+    public static function canCreate(): bool
     {
-        return $form
-            ->schema([
-                //
-            ]);
+        return false;
     }
 
     public static function table(Table $table): Table
     {
         return $table
             ->columns([
-                //
+                TextColumn::make("key")
+                    ->label("Schlüssel")
+                    ->weight("bold")
+                    ->searchable(),
+                TextColumn::make("total_events")
+                    ->label("Max. Events")
+                    ->sortable(),
+                CheckboxColumn::make("active")->label("Aktiv"),
             ])
-            ->filters([
-                //
-            ])
-            ->actions([
-                Tables\Actions\EditAction::make(),
-            ])
-            ->bulkActions([
-                Tables\Actions\DeleteBulkAction::make(),
-            ]);
+            ->bulkActions([Tables\Actions\DeleteBulkAction::make()]);
     }
-    
+
     public static function getRelations(): array
     {
         return [
-            //
-        ];
+                //
+            ];
     }
-    
+
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListSubscriptions::route('/'),
-            'create' => Pages\CreateSubscription::route('/create'),
-            'edit' => Pages\EditSubscription::route('/{record}/edit'),
+            "index" => Pages\ListSubscriptions::route("/"),
         ];
-    }    
+    }
 }

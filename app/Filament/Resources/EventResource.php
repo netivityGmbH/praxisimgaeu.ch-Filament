@@ -10,6 +10,7 @@ use Filament\Resources\Form;
 use Filament\Resources\Resource;
 use Filament\Resources\Table;
 use Filament\Tables;
+use Filament\Tables\Columns\TextColumn;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
@@ -17,48 +18,37 @@ class EventResource extends Resource
 {
     protected static ?string $model = Event::class;
 
-    protected static ?string $navigationGroup = 'Sensopro';
+    protected static ?string $navigationGroup = "Sensopro";
     protected static ?int $navigationSort = 2;
-    protected static ?string $navigationIcon = 'heroicon-o-collection';
+    protected static ?string $navigationIcon = "heroicon-o-collection";
 
-    public static function form(Form $form): Form
+    public static function canCreate(): bool
     {
-        return $form
-            ->schema([
-                //
-            ]);
+        return false;
     }
 
     public static function table(Table $table): Table
     {
         return $table
             ->columns([
-                //
+                TextColumn::make("name")->label("Name"),
+                TextColumn::make("start")->label("Startzeit"),
+                TextColumn::make("end")->label("Endzeit"),
             ])
-            ->filters([
-                //
-            ])
-            ->actions([
-                Tables\Actions\EditAction::make(),
-            ])
-            ->bulkActions([
-                Tables\Actions\DeleteBulkAction::make(),
-            ]);
+            ->bulkActions([Tables\Actions\DeleteBulkAction::make()]);
     }
-    
+
     public static function getRelations(): array
     {
         return [
-            //
-        ];
+                //
+            ];
     }
-    
+
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListEvents::route('/'),
-            'create' => Pages\CreateEvent::route('/create'),
-            'edit' => Pages\EditEvent::route('/{record}/edit'),
+            "index" => Pages\ListEvents::route("/"),
         ];
-    }    
+    }
 }

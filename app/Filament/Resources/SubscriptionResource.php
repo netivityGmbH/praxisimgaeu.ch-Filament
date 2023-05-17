@@ -41,6 +41,7 @@ class SubscriptionResource extends Resource
                     ->sortable(),
                 CheckboxColumn::make("active")->label("Aktiv"),
             ])
+            ->defaultSort("created_at", "desc")
             ->bulkActions([Tables\Actions\DeleteBulkAction::make()]);
     }
 

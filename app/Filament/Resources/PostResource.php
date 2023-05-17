@@ -81,6 +81,7 @@ class PostResource extends Resource
                     ->since()
                     ->size("sm"),
             ])
+            ->defaultSort("created_at", "desc")
 
             ->filters([
                 //

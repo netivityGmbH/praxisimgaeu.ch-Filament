@@ -23,7 +23,7 @@ Route::middleware("auth:sanctum")->get("/user", function (Request $request) {
 */
 
 Route::get("/posts", function () {
-    return Post::all();
+    return Post::orderBy("created_at", "desc")->get();
 });
 
 Route::prefix("subscriptions")->group(function () {

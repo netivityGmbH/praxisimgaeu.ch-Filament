@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources;
 
+use App\Actions\TriggerCircleCiPipeline;
 use App\Filament\Resources\PostResource\Pages;
 use App\Filament\Resources\PostResource\RelationManagers;
 use App\Models\Post;
@@ -87,8 +88,12 @@ class PostResource extends Resource
                 //
             ])
             ->actions([
-                Tables\Actions\EditAction::make(),
-                Tables\Actions\DeleteAction::make(),
+                Tables\Actions\EditAction::make()->after(function () {
+                    TriggerCircleCiPipeline::dispatch();
+                }),
+                Tables\Actions\DeleteAction::make()->after(function () {
+                    TriggerCircleCiPipeline::dispatch();
+                }),
             ])
             ->bulkActions([Tables\Actions\DeleteBulkAction::make()]);
     }

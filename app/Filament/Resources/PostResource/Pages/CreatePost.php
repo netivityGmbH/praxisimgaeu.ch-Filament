@@ -11,10 +11,8 @@ class CreatePost extends CreateRecord
 {
     protected static string $resource = PostResource::class;
 
-    protected function handleRecordCreation(array $data): Model
+    protected function afterCreate(): void
     {
         TriggerCircleCiPipeline::dispatch();
-
-        return static::getModel()::create($data);
     }
 }

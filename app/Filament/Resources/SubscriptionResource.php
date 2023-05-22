@@ -4,6 +4,7 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\SubscriptionResource\Pages;
 use App\Filament\Resources\SubscriptionResource\RelationManagers;
+use App\Filament\Resources\SubscriptionResource\RelationManagers\EventsRelationManager;
 use App\Models\Subscription;
 use Filament\Forms;
 use Filament\Forms\Components\Checkbox;
@@ -69,9 +70,7 @@ class SubscriptionResource extends Resource
 
     public static function getRelations(): array
     {
-        return [
-                //
-            ];
+        return [EventsRelationManager::class];
     }
 
     public static function getPages(): array

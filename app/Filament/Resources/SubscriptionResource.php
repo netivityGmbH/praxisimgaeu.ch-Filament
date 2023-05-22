@@ -38,13 +38,16 @@ class SubscriptionResource extends Resource
                     ->searchable(),
                 TextColumn::make("events_count")
                     ->counts("events")
+                    ->label("Aktuelle Events")
                     ->grow(false),
                 TextColumn::make("total_events")
                     ->label("Max. Events")
-                    ->sortable(),
+                    ->sortable()
+                    ->grow(false),
                 CheckboxColumn::make("active")->label("Aktiv"),
             ])
             ->defaultSort("created_at", "desc")
+            ->actions([Tables\Actions\DeleteAction::make()])
             ->bulkActions([Tables\Actions\DeleteBulkAction::make()]);
     }
 

@@ -31,7 +31,9 @@ class EventResource extends Resource
     {
         return $table
             ->columns([
-                TextColumn::make("subscription.key")->label("Schlüssel"),
+                TextColumn::make("subscription.key")
+                    ->label("Schlüssel")
+                    ->searchable(),
                 TextColumn::make("name")->label("Name"),
                 TextColumn::make("start")
                     ->dateTime("d.m.Y H:i")
@@ -42,6 +44,7 @@ class EventResource extends Resource
                     ->label("Endzeit")
                     ->grow(false),
             ])
+            ->actions([Tables\Actions\DeleteAction::make()])
             ->bulkActions([Tables\Actions\DeleteBulkAction::make()]);
     }
 

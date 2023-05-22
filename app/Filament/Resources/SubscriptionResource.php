@@ -6,6 +6,8 @@ use App\Filament\Resources\SubscriptionResource\Pages;
 use App\Filament\Resources\SubscriptionResource\RelationManagers;
 use App\Models\Subscription;
 use Filament\Forms;
+use Filament\Forms\Components\Checkbox;
+use Filament\Forms\Components\TextInput;
 use Filament\Resources\Form;
 use Filament\Resources\Resource;
 use Filament\Resources\Table;
@@ -28,6 +30,17 @@ class SubscriptionResource extends Resource
         return false;
     }
 
+    public static function form(Form $form): Form
+    {
+        return $form->schema([
+            TextInput::make("key"),
+            TextInput::make("total_events")->label("Max. Events"),
+            Checkbox::make("active")
+                ->label("Aktiv")
+                ->disabled(),
+        ]);
+    }
+
     public static function table(Table $table): Table
     {
         return $table
@@ -47,7 +60,10 @@ class SubscriptionResource extends Resource
                 CheckboxColumn::make("active")->label("Aktiv"),
             ])
             ->defaultSort("created_at", "desc")
-            ->actions([Tables\Actions\DeleteAction::make()])
+            ->actions([
+                Tables\Actions\DeleteAction::make(),
+                Tables\Actions\ViewAction::make(),
+            ])
             ->bulkActions([Tables\Actions\DeleteBulkAction::make()]);
     }
 

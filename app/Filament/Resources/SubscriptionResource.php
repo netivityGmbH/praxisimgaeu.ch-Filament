@@ -60,6 +60,11 @@ class SubscriptionResource extends Resource
                     ->sortable()
                     ->grow(false),
                 CheckboxColumn::make("active")->label("Aktiv"),
+                TextColumn::make("created_at")
+                    ->date("Y.m.d")
+                    ->label("Datum")
+                    ->sortable()
+                    ->searchable(),
             ])
             ->defaultSort("created_at", "desc")
             ->actions([

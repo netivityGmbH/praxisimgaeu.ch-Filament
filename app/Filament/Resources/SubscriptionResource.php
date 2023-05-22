@@ -61,7 +61,7 @@ class SubscriptionResource extends Resource
                     ->grow(false),
                 CheckboxColumn::make("active")->label("Aktiv"),
                 TextColumn::make("created_at")
-                    ->date("Y.m.d")
+                    ->date("d.m.Y")
                     ->label("Datum")
                     ->sortable()
                     ->searchable(),

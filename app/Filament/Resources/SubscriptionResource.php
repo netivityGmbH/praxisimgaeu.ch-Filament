@@ -78,6 +78,7 @@ class SubscriptionResource extends Resource
     {
         return [
             "index" => Pages\ListSubscriptions::route("/"),
+            "view" => Pages\ViewSubscription::route("/{record}"),
         ];
     }
 }

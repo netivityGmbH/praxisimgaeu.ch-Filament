@@ -25,6 +25,7 @@ class SubscriptionResource extends Resource
     protected static ?string $navigationGroup = "Sensopro";
     protected static ?int $navigationSort = 1;
     protected static ?string $navigationIcon = "heroicon-o-key";
+    protected static ?string $navigationLabel = "Lizenzen";
 
     public static function canCreate(): bool
     {

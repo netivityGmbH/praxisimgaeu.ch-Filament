@@ -16,7 +16,7 @@ class StatsOverview extends BaseWidget
             Card::make("Anzahl Posts", Post::count())
                 ->description("Alle Posts sind veröffentlicht")
                 ->descriptionColor("success")
-                ->descriptionIcon("heroicon-o-collection"),
+                ->descriptionIcon("heroicon-o-badge-check"),
 
             Card::make("Anzahl Lizenzen", Subscription::count()),
 

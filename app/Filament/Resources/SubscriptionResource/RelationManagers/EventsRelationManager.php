@@ -31,7 +31,7 @@ class EventsRelationManager extends RelationManager
                     ->label("Endzeit")
                     ->grow(false),
             ])
-
+            ->defaultSort("created_at", "desc")
             ->actions([Tables\Actions\DeleteAction::make()])
             ->bulkActions([Tables\Actions\DeleteBulkAction::make()]);
     }

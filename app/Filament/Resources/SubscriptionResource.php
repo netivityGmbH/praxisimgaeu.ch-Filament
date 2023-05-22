@@ -36,6 +36,9 @@ class SubscriptionResource extends Resource
                     ->label("Schlüssel")
                     ->weight("bold")
                     ->searchable(),
+                TextColumn::make("events_count")
+                    ->counts("events")
+                    ->grow(false),
                 TextColumn::make("total_events")
                     ->label("Max. Events")
                     ->sortable(),

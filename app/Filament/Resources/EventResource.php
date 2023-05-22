@@ -31,6 +31,7 @@ class EventResource extends Resource
     {
         return $table
             ->columns([
+                TextColumn::make("subscription.key")->label("Schlüssel"),
                 TextColumn::make("name")->label("Name"),
                 TextColumn::make("start")
                     ->dateTime("d.m.Y H:i")

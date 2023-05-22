@@ -32,7 +32,7 @@ Route::prefix("subscriptions")->group(function () {
 
 Route::prefix("events")->group(function () {
     Route::get("/", function () {
-        Event::orderBy("start", "desc")->get();
+        return Event::orderBy("start", "desc")->get();
     });
 
     Route::post("/", StoreEventController::class);

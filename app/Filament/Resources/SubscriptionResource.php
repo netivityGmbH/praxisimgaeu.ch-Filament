@@ -3,20 +3,16 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\SubscriptionResource\Pages;
-use App\Filament\Resources\SubscriptionResource\RelationManagers;
 use App\Filament\Resources\SubscriptionResource\RelationManagers\EventsRelationManager;
 use App\Models\Subscription;
-use Filament\Forms;
-use Filament\Forms\Components\Checkbox;
 use Filament\Forms\Components\TextInput;
+use Filament\Forms\Components\Toggle;
 use Filament\Resources\Form;
 use Filament\Resources\Resource;
 use Filament\Resources\Table;
 use Filament\Tables;
-use Filament\Tables\Columns\CheckboxColumn;
 use Filament\Tables\Columns\TextColumn;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Filament\Tables\Columns\ToggleColumn;
 
 class SubscriptionResource extends Resource
 {
@@ -37,7 +33,7 @@ class SubscriptionResource extends Resource
         return $form->schema([
             TextInput::make("key"),
             TextInput::make("total_events")->label("Max. Events"),
-            Checkbox::make("active")
+            Toggle::make("active")
                 ->label("Aktiv")
                 ->disabled(),
         ]);
@@ -59,7 +55,7 @@ class SubscriptionResource extends Resource
                     ->label("Max. Events")
                     ->sortable()
                     ->grow(false),
-                CheckboxColumn::make("active")->label("Aktiv"),
+                ToggleColumn::make("active")->label("Aktiv"),
                 TextColumn::make("created_at")
                     ->date("d.m.Y")
                     ->label("Datum")

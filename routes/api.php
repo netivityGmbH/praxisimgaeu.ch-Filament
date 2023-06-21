@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CheckSubscriptionStatusController;
 use App\Http\Controllers\StoreEventController;
+use App\Http\Controllers\StoreSubscriptionController;
 use App\Models\Event;
 use App\Models\Post;
 use Illuminate\Support\Facades\Route;
@@ -27,6 +28,7 @@ Route::get("/posts", function () {
 });
 
 Route::prefix("subscriptions")->group(function () {
+    Route::post("/", StoreSubscriptionController::class);
     Route::post("/check", CheckSubscriptionStatusController::class);
 });
 

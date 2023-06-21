@@ -6,6 +6,7 @@ use App\Models\Subscription;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Str;
 
 class StoreSubscriptionController extends Controller
 {
@@ -14,8 +15,6 @@ class StoreSubscriptionController extends Controller
      */
     public function __invoke(Request $request): JsonResponse
     {
-        return response()->json("test", 201);
-
         $validator = Validator::make($request->all(), [
             "email" => ["required", "email:rfc,dns"],
             "total_events" => ["required", "integer", Rule::in([1, 6, 12, 24])],

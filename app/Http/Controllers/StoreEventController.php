@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\CustomerEventConfirmation;
 use App\Models\Event;
 use App\Models\Subscription;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 
 class StoreEventController extends Controller
@@ -55,14 +57,13 @@ class StoreEventController extends Controller
         }
 
         if ($validated["email"]) {
-            /*
             Mail::to($validated["email"])->send(
                 new CustomerEventConfirmation(
                     $validated["events"],
                     $validated["subscription_id"]
                 )
             );
-            */
+
             return response()->json("mail_sent", 201);
         } else {
             return response()->json("no_mail", 201);

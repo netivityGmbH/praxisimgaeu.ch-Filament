@@ -20,6 +20,8 @@ class StoreSubscriptionController extends Controller
     public function __invoke(Request $request): JsonResponse
     {
         $validator = Validator::make($request->all(), [
+            "firstname" => ["required", "string", "max:255"],
+            "lastname" => ["required", "string", "max:255"],
             "email" => ["required", "email:rfc,dns"],
             "total_events" => ["required", "integer", Rule::in([1, 6, 12, 24])],
         ]);
@@ -31,6 +33,8 @@ class StoreSubscriptionController extends Controller
         $validated = $validator->validated();
 
         $newSubscription = Subscription::create([
+            "firstname" => $validated["firstname"],
+            "lastname" => $validated["lastname"],
             "key" => strtoupper("PIG-" . Str::random(5) . "-" . Str::random(5)),
             "total_events" => $validated["total_events"],
         ]);

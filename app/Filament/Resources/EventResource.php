@@ -32,6 +32,12 @@ class EventResource extends Resource
     {
         return $table
             ->columns([
+                TextColumn::make("subscription.firstname")
+                    ->label("Vorname")
+                    ->searchable(),
+                TextColumn::make("subscription.lastname")
+                    ->label("Nachname")
+                    ->searchable(),
                 TextColumn::make("subscription.key")
                     ->label("Schlüssel")
                     ->searchable(),

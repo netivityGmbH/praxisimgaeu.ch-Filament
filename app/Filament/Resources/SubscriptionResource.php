@@ -43,6 +43,14 @@ class SubscriptionResource extends Resource
     {
         return $table
             ->columns([
+                TextColumn::make("firstname")
+                    ->label("Vorname")
+                    ->weight("bold")
+                    ->searchable(),
+                TextColumn::make("lastname")
+                    ->label("Nachname")
+                    ->weight("bold")
+                    ->searchable(),
                 TextColumn::make("key")
                     ->label("Schlüssel")
                     ->weight("bold")

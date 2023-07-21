@@ -15,7 +15,13 @@ class Subscription extends Model
      *
      * @var array
      */
-    protected $fillable = ['key', 'total_events', 'active'];
+    protected $fillable = [
+        "key",
+        "firstname",
+        "lastname",
+        "total_events",
+        "active",
+    ];
 
     /**
      * The attributes that should be cast.
@@ -23,7 +29,7 @@ class Subscription extends Model
      * @var array
      */
     protected $casts = [
-        'created_at' => 'datetime:d.m.Y',
+        "created_at" => "datetime:d.m.Y",
     ];
 
     /**
